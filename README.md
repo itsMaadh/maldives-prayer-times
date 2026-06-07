@@ -4,6 +4,10 @@ A minimal, self-contained MySQL dataset of daily Islamic prayer times for the Ma
 
 Given a device's latitude/longitude, you find the nearest island that has prayer data and read today's times.
 
+## Prayer time method
+
+Prayer times in the Maldives follow the official timetable published by the Ministry of Islamic Affairs. These times are astronomically derived (they vary by date, latitude, and longitude) but are distributed as a fixed official table — so applications should use these published values directly rather than recomputing them with a generic calculation method (Muslim World League, ISNA, Umm al-Qura, etc.), which would produce slightly different results.
+
 ## What's in the dataset
 
 `maldives_prayer_times.sql` creates two tables:
@@ -29,9 +33,16 @@ Given a device's latitude/longitude, you find the nearest island that has prayer
 
 ## Setup
 
+The script creates the `maldives_prayer_times` database itself (`CREATE DATABASE IF NOT EXISTS` + `USE`), so just run it — no need to create the database first:
+
 ```bash
-mysql -u root -p -e "CREATE DATABASE maldives_prayer_times"
-mysql -u root -p maldives_prayer_times < maldives_prayer_times.sql
+mysql -u root -p < maldives_prayer_times.sql
+```
+
+To load it into a database with a different name, drop the `CREATE DATABASE`/`USE` lines at the top of the script and run it against your own database instead:
+
+```bash
+mysql -u root -p your_db_name < maldives_prayer_times.sql
 ```
 
 ## Usage

@@ -2,7 +2,8 @@
 -- Contains only the two tables the app query needs:
 --   tbl_islands       (202 islands that have prayer data: lat/lng + band + per-island offset)
 --   tbl_prayer_times  (42 latitude bands x 366 perpetual-calendar days, year 0004 is a dummy leap year)
-USE `min_prayer_times`;
+CREATE DATABASE IF NOT EXISTS maldives_prayer_times;
+USE maldives_prayer_times;
 SET NAMES utf8mb4;
 SET sql_mode = 'NO_ENGINE_SUBSTITUTION';
 
